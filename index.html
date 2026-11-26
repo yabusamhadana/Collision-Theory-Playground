@@ -75,6 +75,11 @@ canvas{border-radius:6px;background:var(--bg);border:1px solid var(--line)}
 .rx{font-weight:600}
 summary{cursor:pointer}
 .q .t button{border-color:var(--line)}
+.guide{max-width:72ch}
+.guide h3{font-size:16px;font-weight:600;margin:28px 0 6px}
+.guide ul{padding-left:20px;margin:6px 0}.guide li{margin:5px 0}
+.guide table{border-collapse:collapse;font-size:14px;margin:8px 0;width:100%}
+.guide th,.guide td{border:1px solid var(--line);padding:6px 10px;text-align:left}
 </style>
 </head>
 <body>
@@ -84,16 +89,17 @@ summary{cursor:pointer}
 <button id="th" aria-label="Switch between light and dark theme">Dark mode</button>
 </header>
 <nav role="tablist">
-<button role="tab" id="t1" aria-selected="true" aria-controls="p1">Practice</button>
-<button role="tab" id="t2" aria-selected="false" aria-controls="p2">Simulate</button>
+<button role="tab" id="t2" aria-selected="true" aria-controls="p2">Simulate</button>
+<button role="tab" id="t3" aria-selected="false" aria-controls="p3">Study guide</button>
+<button role="tab" id="t1" aria-selected="false" aria-controls="p1">Practice</button>
 </nav>
 
-<section id="p1" role="tabpanel" aria-labelledby="t1">
+<section id="p1" role="tabpanel" aria-labelledby="t1" hidden>
 <div class="bar"><h2 class="sec">Practice questions</h2><span class="sp"></span><span class="score" id="score"></span><button class="p" id="rr">Reroll all questions</button></div>
 <div id="qs"></div>
 </section>
 
-<section id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+<section id="p2" role="tabpanel" aria-labelledby="t2">
 <div class="bar">
 <h2 class="sec">Simulation</h2><span class="rx"><span class="a">A</span> + <span class="b">B</span> → <span class="c">2C</span></span><span class="sp"></span>
 <label style="margin:0" for="spd">Speed <span id="spv" style="float:none;margin-left:4px"></span></label>
@@ -107,6 +113,56 @@ summary{cursor:pointer}
 <p class="cap" id="cuv" aria-live="polite"></p><p class="cap">The thick arc on each molecule is its reactive site. Its width follows the site half-angle slider in Box 1.</p></details>
 <div class="boxes one" id="boxes"></div>
 </section>
+<section id="p3" role="tabpanel" aria-labelledby="t3" hidden class="guide">
+<h2 class="sec">Study guide</h2>
+<h3>Reaction mechanisms</h3>
+<ul><li>A mechanism is a sequence of elementary reactions that add up to the overall reaction.</li>
+<li>An elementary reaction is a single chemical step with one transition state. Its rate scales with each reactant concentration raised to its stoichiometric coefficient. This holds for elementary steps only, not for overall reactions.</li>
+<li>Example: O₃ + O → 2O₂ occurs as O₃ + Cl → O₂ + ClO, then O + ClO → O₂ + Cl.</li>
+<li>An <b>intermediate</b> is formed in an earlier step and consumed in a later one (ClO).</li>
+<li>A <b>catalyst</b> is consumed early and re-formed at the end (Cl), so it is absent from the overall equation.</li></ul>
+<h3>Molecularity</h3>
+<ul><li><b>Unimolecular:</b> one reactant particle, A → products, rate = k[A]. Examples: isomerization, bond breaking (N₂O₄ ⇌ 2NO₂), radioactive decay.</li>
+<li><b>Bimolecular:</b> exactly two reactant particles collide with one transition state. A + B → products has rate = k[A][B]; 2A → products has rate = k[A]². Example: bond formation, 2NO₂ ⇌ N₂O₄.</li>
+<li><b>Termolecular:</b> exactly three reactant particles. These steps are very slow, so A + B + C → products is unlikely as one step. Expect a multistep path, such as A + B → D and then D + C → products.</li></ul>
+<h3>Factors that affect reaction rate</h3>
+<ul><li>To change a rate, change the collision energy or the collision frequency.</li>
+<li><b>Temperature:</b> a higher T raises the average kinetic energy of collisions and gives a larger rate constant (Arrhenius equation, k = Ae^(−Ea/RT)).</li>
+<li><b>Concentration:</b> higher concentration means more frequent collisions, which usually means a faster reaction. A zero-order reaction is the exception, since its rate does not depend on concentration.</li>
+<li><b>Phase:</b> reactants in different phases can only collide at phase interfaces.</li>
+<li><b>Catalyst:</b> gives a mechanism with a lower activation energy, and is not consumed overall.</li>
+<li><b>Ionization energy trend:</b> when losing an electron controls the rate (for example, alkali metals reacting), a smaller first ionization energy usually goes with a smaller Ea and a faster reaction. This is a trend, not a rule.</li></ul>
+<h3>Rate laws and reaction order</h3>
+<ul><li>For aA + bB → dD + eE: rate = k[A]^m[B]^n. The exponents m and n are the reaction orders, and the total order is m + n.</li>
+<li>Orders show how each concentration affects the rate. They are found by experiment and need not equal the stoichiometric coefficients.</li>
+<li>To determine a rate law, find the orders and the rate constant. Temperature, concentration and time are easy to measure.</li></ul>
+<h3>Units of the rate constant</h3>
+<p>With rate in M/s and concentrations in M, the units of k depend on the overall order:</p>
+<table><thead><tr><th>Overall order</th><th>Units of k</th></tr></thead><tbody>
+<tr><td>0</td><td>M/s</td></tr><tr><td>1</td><td>1/s</td></tr><tr><td>2</td><td>1/(M·s)</td></tr><tr><td>3</td><td>1/(M²·s)</td></tr></tbody></table>
+<h3>Rate-determining step</h3>
+<ul><li>The rate-determining step is the slowest step in a mechanism, and the overall rate is approximately the rate of that step.</li>
+<li>Example: 2I⁻ + H₂O₂ + 2H⁺ → I₂ + 2H₂O must be multistep, because its orders do not match its coefficients. The observed rate is k[I⁻][H₂O₂].</li>
+<li><b>Equilibrium approximation:</b> if the slow step is not the first step, the concentration of the intermediate is set by the fast step before it, through the ratio of its forward and reverse rate constants.</li></ul>
+<h3>Integrated rate laws and half-life</h3>
+<table><thead><tr><th>Order</th><th>Integrated rate law</th><th>Half-life</th></tr></thead><tbody>
+<tr><td>0</td><td>[A]ₜ = −kt + [A]₀</td><td>[A]₀/(2k)</td></tr>
+<tr><td>1</td><td>[A]ₜ = [A]₀e^(−kt)</td><td>0.693/k</td></tr>
+<tr><td>2</td><td>1/[A]ₜ = kt + 1/[A]₀</td><td>1/(k[A]₀)</td></tr></tbody></table>
+<ul><li>These come from integrating d[A]/[A]^m = −k dt.</li>
+<li>Half-life is the time for [A] to fall to half its value.</li>
+<li>Integrated rate laws only work with one reactant. <b>Flooding</b> (pseudo-order) uses a large excess of all other reactants so that rate = k[A]^m[B]₀^n = k_obs[A]^m.</li></ul>
+<h3>Catalysis and enzymes</h3>
+<ul><li><b>Homogeneous catalyst:</b> same phase as the reactants, so its concentration matters.</li>
+<li><b>Heterogeneous catalyst:</b> different phase from the reactants, so its available surface area matters.</li>
+<li><b>Enzymes</b> are biological catalysts, usually proteins. The reactant an enzyme binds is the <b>substrate</b>, and the part that interacts with it is the <b>active site</b>.</li>
+<li><b>Denaturation</b> is the loss of an enzyme’s quaternary, tertiary and secondary structure. <b>Inhibitors</b> decrease an enzyme’s catalytic efficiency.</li></ul>
+<h3>Energetics</h3>
+<ul><li><b>Exergonic:</b> G of products is less than G of reactants, and the reaction is spontaneous.</li>
+<li><b>Endergonic:</b> G of products is greater than G of reactants, and the reaction is nonspontaneous.</li>
+<li><b>Coupled reactions</b> exchange energy, so an exergonic reaction can drive an endergonic one.</li>
+<li>Spontaneous does not mean fast. Free energy says whether a reaction can occur, and kinetics says how quickly.</li></ul>
+</section>
 </main>
 <script>
 const $=id=>document.getElementById(id);
@@ -119,58 +175,51 @@ $('th').onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'li
 
 /* ---------- Practice ---------- */
 const Q={
-"Temperature":[
-["Why does a 10 K rise in temperature often roughly double a reaction rate?",["Collisions become about twice as frequent","A much larger fraction of collisions exceeds Ea","The activation energy drops","Every collision gets the right orientation"],1,"Collision frequency grows only with √T (a couple of percent per 10 K). The fraction of collisions with energy ≥ Ea grows exponentially, and that dominates."],
-["In a Maxwell–Boltzmann distribution of collision energies, raising T does what?",["Shifts the peak right and fattens the high-energy tail","Lowers the peak and moves Ea left","Keeps the shape and shifts the whole curve left","Narrows the curve around the average"],0,"The distribution broadens and shifts right, so the area beyond Ea, the fraction that can react, increases."]],
-"Concentration":[
-["For rate = k[A]², tripling [A] at constant T changes the rate by what factor?",["3","6","9","No change"],2,"Rate ∝ [A]², so 3² = 9. The rate constant k does not change with concentration."],
-["Why does a higher reactant concentration speed up a reaction at constant T?",["It lowers Ea","It raises k","More collisions per second, with the same fraction energetic","A larger share of collisions exceeds Ea"],2,"More particles per volume means more collisions per second. The energy distribution, Ea, and k are unchanged."]],
-"Catalysts":[
-["How does a catalyst speed up a reaction?",["It supplies an alternate pathway with lower Ea","It raises the temperature locally","It shifts equilibrium toward products","It lowers ΔH of the reaction"],0,"A catalyst lowers Ea through a different mechanism. ΔH and the equilibrium position are unchanged."],
-["Reactions A (Ea = 50 kJ/mol) and B (Ea = 80 kJ/mol) have the same pre-exponential factor and temperature. Which is faster?",["A, because a larger fraction of collisions exceeds Ea","B, because high-Ea reactions are more energetic","They match, because T is the same","Cannot tell without ΔH"],0,"Rate ∝ e^(−Ea/RT). A lower Ea means a larger fraction of collisions are energetic enough."]],
-"Orientation":[
-["Why doesn’t every collision with energy ≥ Ea produce a reaction?",["Collisions also need a suitable orientation","Energy is lost to the walls","Ea changes during each collision","Only collisions between identical particles react"],0,"Reacting atoms must meet in the right geometry. This is the steric factor, part of the pre-exponential factor A."],
-["In the simulation, requiring correct orientation mainly changes what?",["Ea, which gets smaller","The pre-exponential factor, so rate falls at every T","The temperature of the box","Only the product’s identity"],1,"Orientation scales how many energetic collisions succeed, which is the factor A. Ea stays the same."]],
-"Arrhenius":[
-["In an Arrhenius plot of ln k vs 1/T, the slope equals:",["−Ea/R","+Ea/R","−Ea·R","ln A"],0,"ln k = ln A − (Ea/R)(1/T), a line with slope −Ea/R and intercept ln A."],
-["Temperature rises from 300 K to 310 K. Which rate changes more?",["Reaction with Ea = 100 kJ/mol","Reaction with Ea = 20 kJ/mol","Both the same, since ΔT is equal","Neither, T only affects gases"],0,"d(ln k)/dT = Ea/RT², so a higher Ea means greater temperature sensitivity."]],
-"Physical state":[
-["A solid reactant is ground to a powder. The rate increases because:",["Ea is lower","More surface is exposed, so more collisions can occur","The solid’s concentration rises","The products are more stable"],1,"A heterogeneous reaction occurs at the surface. More surface area gives more collision sites; Ea is unchanged."],
-["A gas-phase reaction mixture is compressed to half its volume at constant T. The rate:",["Increases, since concentrations double","Decreases, since particles are crowded","Stays the same, since T is fixed","Drops to zero"],0,"Halving the volume doubles every concentration, so collision frequency rises and so does the rate."]],
-"Rate laws":[
-["A first-order reaction has t½ = 10 min. What fraction remains after 30 min?",["1/3","1/6","1/8","1/9"],2,"30 min is three half-lives: (1/2)³ = 1/8. First-order half-life is independent of concentration."],
-["For a second-order reaction in A, the half-life:",["Is constant","Doubles with each successive half-life","Halves with each successive half-life","Is independent of k"],1,"t½ = 1/(k[A]₀). As [A] falls, each successive half-life is longer, doubling each time."]],
 "Mechanisms":[
-["The rate law of a multistep reaction is set by:",["The fastest step","The rate-determining (slowest) step","The overall ΔH","The last step"],1,"The slowest step is the bottleneck. Its molecularity, with any earlier fast steps, determines the observed rate law."],
-["A species formed in one step and consumed in a later step is a(n):",["Catalyst","Intermediate","Reactant","Spectator ion"],1,"Intermediates are formed then consumed. A catalyst is consumed early and regenerated, so it appears in the mechanism but not the net equation."]]
-};
-const X={
-"Temperature":[
-["Which statement about raising the temperature is true for a typical reaction?",["It increases k for both endothermic and exothermic reactions","It decreases k for exothermic reactions","It increases k only for endothermic reactions","It changes concentrations but not k"],0,"In k = Ae^(−Ea/RT), k rises with T whenever Ea > 0, whatever the sign of ΔH."],
-["If T doubles (in kelvin) and Ea stays fixed, the fraction e^(−Ea/RT) becomes:",["Twice as large","The square root of its original value","Unchanged","Half as large"],1,"e^(−Ea/2RT) = (e^(−Ea/RT))^(1/2), the square root of the original fraction. Since the fraction is below 1, that is a larger number."]],
-"Concentration":[
-["For a zero-order reaction in A, doubling [A] changes the rate by:",["No change","×2","×4","×½"],0,"Rate = k[A]⁰ = k, so the rate does not depend on [A]."],
-["What are the units of k for a second-order reaction (M and s)?",["s⁻¹","M s⁻¹","M⁻¹ s⁻¹","M⁻² s⁻¹"],2,"Rate (M/s) = k[A]², so k = (M/s)/M² = M⁻¹ s⁻¹."]],
-"Catalysts":[
-["A catalyst is added to A ⇌ B at equilibrium. The equilibrium constant:",["Is unchanged, since both directions speed up","Increases","Decreases","Becomes infinite"],0,"A catalyst lowers Ea for forward and reverse reactions equally, so K = kf/kr is unchanged. Equilibrium is just reached sooner."],
-["A catalyst lowers Ea of the forward reaction by 20 kJ/mol. The reverse reaction’s Ea:",["Also drops by 20 kJ/mol","Rises by 20 kJ/mol","Is unchanged","Drops by 40 kJ/mol"],0,"The catalyzed pathway lowers the transition state relative to both reactants and products, so both barriers fall by the same amount."]],
-"Orientation":[
-["In the close-up, a high-energy collision bounces off without reacting. The most likely reason is:",["The reactive sites did not face each other","Ea increased","The molecules were too heavy","The temperature was too low to collide"],0,"Energy is necessary but not sufficient. If the reactive sites miss, there is no reaction."],
-["Narrowing the reactive site in the simulation should:",["Lower the steric factor and the effective percentage, with Ea unchanged","Raise Ea","Raise the collision rate","Have no effect"],0,"A narrower site means fewer collisions line up, so the pre-exponential factor drops. Ea is a property of the energy barrier, not the geometry."]],
-"Arrhenius":[
-["The y-intercept of an Arrhenius plot (ln k vs 1/T) equals:",["ln A","−Ea/R","Ea","ln Ea"],0,"At 1/T = 0, ln k = ln A."],
-["A reaction has Ea = 0. How does k depend on T?",["It doubles every 10 K","It does not depend on T","It decreases with T","It grows as e^T"],1,"With Ea = 0, e^(−Ea/RT) = 1, so k = A at every temperature."]],
-"Physical state":[
-["Which change would NOT speed up a solid–gas surface reaction?",["Grinding the solid to powder","Raising the gas pressure","Raising the temperature","Using one large chunk instead of many small ones"],3,"One big chunk has less surface area per mass, so fewer collision sites."],
-["Why are reactions between ions in solution often much faster than between mixed solids?",["Ions move freely and collide throughout the mixture","Solutions have lower Ea","Solids are always unreactive","Water is a catalyst for every reaction"],0,"In solid mixtures, reactants only meet at contact surfaces. Dissolved species mix at the particle level."]],
+["Which describes an elementary reaction?",["A single step with one transition state","The overall balanced equation","Any reaction with three or more steps","A reaction whose orders come from experiment"],0,"An elementary reaction is one chemical step with a single transition state. A mechanism is a sequence of them that adds up to the overall reaction."],
+["Overall: O₃ + O → 2O₂. Step 1: O₃ + Cl → O₂ + ClO. Step 2: O + ClO → O₂ + Cl. Which species is the intermediate?",["Cl","ClO","O₃","O₂"],1,"ClO is formed in step 1 and consumed in step 2, and it never appears in the overall equation."],
+["In the same mechanism, which species is the catalyst?",["Cl","ClO","O","O₂"],0,"Cl is consumed early (step 1) and re-formed at the end (step 2), so it speeds the reaction without being used up overall."]],
+"Molecularity":[
+["What is the rate law for the elementary step 2A → products?",["k[A]","k[A]²","2k[A]","k[A]⁰"],1,"For an elementary step, the rate scales with each reactant concentration raised to its stoichiometric coefficient: rate = k[A]²."],
+["Which is a unimolecular reaction?",["N₂O₄(g) → 2NO₂(g)","2NO₂(g) → N₂O₄(g)","A + B → products","A + B + C → products"],0,"Unimolecular steps have a single reactant. Bond breaking, isomerization and radioactive decay are examples. 2NO₂ → N₂O₄ is bimolecular."],
+["Why is a one-step termolecular reaction unlikely?",["Three particles would need to collide at the same instant, which is very rare","Termolecular steps always have zero order","Three reactants cannot react","Termolecular steps have no transition state"],0,"Such reactions proceed very slowly, so an A + B + C reaction is usually a multistep process, such as A + B → D and then D + C → products."]],
+"Factors affecting rate":[
+["Reactants in different phases can only collide:",["Anywhere in the container","At phase interfaces","Only after dissolving","Only at high temperature"],1,"Collisions between separate phases occur at the interface, which is why surface area matters for these reactions."],
+["Raising the temperature increases a reaction’s rate mainly because:",["The average kinetic energy of collisions increases, so k increases","The activation energy decreases","Concentrations increase","A new mechanism forms"],0,"Higher T raises collision energy, so more collisions can overcome Ea and the rate constant k becomes larger."],
+["Which change speeds up a reaction by giving it a new mechanism?",["Raising the temperature","Increasing a concentration","Adding a catalyst","Stirring the mixture"],2,"A catalyst provides an alternative pathway with a lower activation energy."]],
 "Rate laws":[
-["Doubling [A] doubles the initial rate, and doubling [B] quadruples it. The rate law is:",["k[A]²[B]","k[A][B]²","k[A][B]","k[A]²[B]²"],1,"Order in A: 2¹ = 2, so first order. Order in B: 2² = 4, so second order."],
-["A plot of ln[A] vs time is a straight line. The reaction is:",["Zero order","First order","Second order","Cannot be determined"],1,"Integrated first-order law: ln[A] = ln[A]₀ − kt. Zero order plots [A] vs t, and second order plots 1/[A] vs t."]],
-"Mechanisms":[
-["Step 1: A + B → C (slow). Step 2: C + B → D (fast). The rate law is:",["k[A][B]","k[C][B]","k[A][B]²","k[D]"],0,"The slow first step is rate-determining, and its reactants are A and B."],
-["Why can’t you always write the rate law from the balanced overall equation?",["Orders must be found by experiment, since they depend on the mechanism","Balanced equations are often wrong","Rate laws use only products","Coefficients never matter"],0,"The overall equation shows stoichiometry, not the elementary steps that control the rate."]]
+["A reaction is first order in A and second order in B. What is the overall order?",["1","2","3","6"],2,"The overall order is the sum of the individual orders: 1 + 2 = 3."],
+["How are reaction orders determined for an overall reaction?",["From the balanced equation’s coefficients","By experiment, and they need not match the coefficients","From the products only","From ΔG"],1,"Orders reflect the mechanism and must be measured. Only elementary steps have orders equal to their coefficients."],
+["For rate = k[A]²[B], doubling both [A] and [B] changes the rate by what factor?",["2","4","6","8"],3,"Factor = 2² × 2¹ = 8."]],
+"Units of k":[
+["What are the units of k for a first-order reaction (rate in M/s)?",["M/s","1/s","1/(M·s)","1/(M²·s)"],1,"Rate (M/s) = k[A], so k has units 1/s."],
+["What are the units of k for a zero-order reaction?",["M/s","1/s","1/(M·s)","1/(M²·s)"],0,"Rate = k, so k has the same units as the rate, M/s."],
+["A reaction has k = 0.25 M⁻¹ s⁻¹. What is its overall order?",["Zero","First","Second","Third"],2,"Units of 1/(M·s) belong to a second-order reaction."]],
+"Rate-determining step":[
+["In a multistep mechanism, the rate-determining step is:",["The fastest step","The first step","The slowest step","The last step"],2,"The slowest step is the bottleneck, so the overall rate is approximately the rate of that step."],
+["Step 1: A + B → C (slow). Step 2: C + B → D (fast). The observed rate law is:",["k[A][B]","k[C][B]","k[A][B]²","k[D]"],0,"The overall rate matches the slow step, whose reactants are A and B."],
+["If the rate-determining step is not the first step, the concentration of the intermediate is found using:",["The equilibrium approximation, a ratio of rate constants from the fast earlier step","Its half-life","The reaction’s ΔG","The coefficient in the overall equation"],0,"The fast step before the slow one reaches equilibrium, so the intermediate’s concentration comes from K = kf/kr."],
+["2I⁻ + H₂O₂ + 2H⁺ → I₂ + 2H₂O has the observed rate law k[I⁻][H₂O₂]. What does this tell you?",["The reaction must be multistep, since the orders do not match the coefficients","The reaction is a single elementary step","H⁺ is the catalyst","The reaction is third order"],0,"Five reactant particles cannot collide in one step, and the orders differ from the coefficients, so the rate law reflects a slow step in a longer mechanism."]],
+"Integrated rate laws":[
+["Which is the integrated rate law for a first-order reaction?",["[A]ₜ = −kt + [A]₀","1/[A]ₜ = kt + 1/[A]₀","[A]ₜ = [A]₀e^(−kt)","[A]ₜ = [A]₀/(kt)"],2,"First order gives an exponential decay: [A]ₜ = [A]₀e^(−kt). The other two are the zero- and second-order forms."],
+["For a second-order reaction in A, which plot is a straight line?",["[A] vs t","ln[A] vs t","1/[A] vs t","[A]² vs t"],2,"1/[A]ₜ = kt + 1/[A]₀ is linear in t with slope k."],
+["What is flooding (pseudo-order) used for?",["Using a large excess of all but one reactant so the rate depends on only one concentration","Adding water to speed up the reaction","Making a reaction zero order by cooling it","Increasing the activation energy"],0,"The integrated rate laws work with one reactant. With the others in large excess, their concentrations stay about constant, so rate = k_obs[A]^m."]],
+"Half-life":[
+["A first-order reaction has k = 0.0693 s⁻¹. What is t½?",["1 s","10 s","100 s","0.1 s"],1,"t½ = 0.693/k = 0.693/0.0693 = 10 s."],
+["Which reaction order has a half-life that does not depend on [A]₀?",["Zero","First","Second","None of them"],1,"For first order, t½ = 0.693/k, which has no concentration term."],
+["A second-order reaction has k = 0.25 M⁻¹ s⁻¹ and [A]₀ = 0.20 M. What is t½?",["5 s","10 s","20 s","40 s"],2,"t½ = 1/(k[A]₀) = 1/(0.25 × 0.20) = 20 s."],
+["For a zero-order reaction, what happens to t½ as [A]₀ increases?",["It increases, since t½ = [A]₀/(2k)","It decreases","It stays constant","It becomes zero"],0,"With more reactant, the constant-rate reaction takes longer to consume half of it."]],
+"Catalysts and enzymes":[
+["A homogeneous catalyst is:",["In the same phase as the reactants","In a different phase from the reactants","Always an enzyme","Consumed permanently"],0,"A homogeneous catalyst shares the reactants’ phase, so its concentration affects the rate."],
+["The rate of a reaction with a heterogeneous catalyst depends strongly on:",["The catalyst’s available surface area","The catalyst’s color","The number of products","The reaction’s ΔG only"],0,"A heterogeneous catalyst is in a different phase, so reactions occur at its surface."],
+["What does enzyme denaturation do?",["Destroys the primary structure completely","Makes the enzyme work faster","Loses the quaternary, tertiary and secondary structure so it stops working","Converts it to a substrate"],2,"Denaturation unfolds the protein’s higher-order structure, which destroys the active site’s shape."],
+["The part of an enzyme where the substrate binds is the:",["Active site","Inhibitor","Intermediate","Product"],0,"The active site is where an enzyme interacts with its substrate. Inhibitors reduce an enzyme’s catalytic efficiency."]],
+"Energetics":[
+["Which describes an exergonic reaction?",["G of products is less than G of reactants","G of products is greater than G of reactants","It always needs a catalyst","It cannot be spontaneous"],0,"Exergonic means free energy decreases (ΔG < 0), and the reaction is spontaneous. Endergonic is the opposite."],
+["What are coupled reactions?",["Reactions that exchange energy, such as an exergonic one driving an endergonic one","Reactions that share a catalyst","Two reactions with the same rate","Reactions with identical products"],0,"In coupling, energy released by one reaction powers another that would not proceed on its own."],
+["Can a spontaneous (exergonic) reaction be very slow?",["Yes, spontaneity says nothing about speed","No, spontaneous reactions are always fast","Only if endergonic","Only with a catalyst"],0,"Thermodynamics tells you whether a reaction can occur. Kinetics, the activation energy, tells you how fast."]]
 };
-Object.keys(X).forEach(t=>Q[t].push(...X[t]));const other=(t,v)=>{let n;do{n=Math.floor(Math.random()*Q[t].length)}while(n===v);return n};
+const other=(t,v)=>{let n;do{n=Math.floor(Math.random()*Q[t].length)}while(n===v);return n};
 const topics=Object.keys(Q);let set=[];
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 function mk(t,v){const [q,o,a,e]=Q[t][v],ix=shuf(o.map((_,i)=>i));return{t,v,q,o:ix.map(i=>o[i]),a:ix.indexOf(a),e,pick:-1}}
@@ -259,8 +308,8 @@ $('pz').onclick=e=>{paused=!paused;e.target.textContent=paused?'Resume':'Pause'}
 $('spd').oninput=()=>$('spv').textContent=$('spd').value+'×';$('spv').textContent='2×';
 
 /* ---------- Tabs & loop ---------- */
-function tab(n){[1,2].forEach(i=>{$('t'+i).setAttribute('aria-selected',i===n);$('p'+i).hidden=i!==n})}
-$('t1').onclick=()=>tab(1);$('t2').onclick=()=>tab(2);
+function tab(n){[1,2,3].forEach(i=>{$('t'+i).setAttribute('aria-selected',i===n);$('p'+i).hidden=i!==n})}
+$('t1').onclick=()=>tab(1);$('t2').onclick=()=>tab(2);$('t3').onclick=()=>tab(3);
 function fit(c,x,lw,lh){const w=c.clientWidth;if(!w)return false;const pw=Math.round(w*(window.devicePixelRatio||1));if(c.width!==pw){c.width=pw;c.height=Math.round(pw*lh/lw)}x.setTransform(c.width/lw,0,0,c.width/lw,0,0);return true}
 function drawCU(){const cc=$('cuc'),x=cc.getContext('2d'),al=sims[0].s.al,A=+$('cuA').value,B=+$('cuB').value,r=Math.PI/180;if(!fit(cc,x,560,170))return;
 $('cuAv').textContent=A+'°';$('cuBv').textContent=B+'°';x.clearRect(0,0,560,170);
