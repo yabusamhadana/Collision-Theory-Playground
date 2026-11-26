@@ -75,7 +75,21 @@ canvas{border-radius:6px;background:var(--bg);border:1px solid var(--line)}
 .rx{font-weight:600}
 summary{cursor:pointer}
 .q .t button{border-color:var(--line)}
-.guide{max-width:72ch}
+.guide{max-width:900px}
+.guide h3{clear:both}
+.guide figure{float:right;width:min(290px,42%);margin:0 0 12px 24px}
+.guide figcaption{font-size:12px;color:var(--mute)}
+svg.dg{width:100%;height:auto;display:block}
+svg.dg text{fill:var(--ink);font:11px "Segoe UI",system-ui,sans-serif}
+svg.dg .t{fill:var(--mute)}
+svg.dg .s,svg.dg .sa,svg.dg .sb,svg.dg .m{fill:none;stroke-linecap:round;stroke-linejoin:round}
+svg.dg .s{stroke:var(--ink);stroke-width:2}
+svg.dg .sa{stroke:var(--a);stroke-width:2}
+svg.dg .sb{stroke:var(--b);stroke-width:2}
+svg.dg .m{stroke:var(--mute);stroke-width:1.2}
+svg.dg .d{stroke-dasharray:4 3}
+.qimg{max-width:300px;margin:0 0 10px}
+@media (max-width:720px){.guide figure{float:none;width:100%;max-width:320px;margin:8px 0}}
 .guide h3{font-size:16px;font-weight:600;margin:28px 0 6px}
 .guide ul{padding-left:20px;margin:6px 0}.guide li{margin:5px 0}
 .guide table{border-collapse:collapse;font-size:14px;margin:8px 0;width:100%}
@@ -115,7 +129,7 @@ summary{cursor:pointer}
 </section>
 <section id="p3" role="tabpanel" aria-labelledby="t3" hidden class="guide">
 <h2 class="sec">Study guide</h2>
-<h3>Reaction mechanisms</h3>
+<h3>Reaction mechanisms</h3><figure><svg class="dg" viewBox="0 0 260 170" role="img" aria-label="Energy diagram of a two-step mechanism: two transition-state peaks with the intermediate in the valley between them, and products lower than reactants."><path class="m" d="M30 10V150H250"/><text x="34" y="16">Energy</text><text x="250" y="165" text-anchor="end">Reaction progress</text><path class="s" d="M32 110C60 110 62 50 85 50C108 50 110 92 135 92C160 92 162 66 188 66C214 66 216 130 246 130"/><text x="85" y="42" text-anchor="middle">TS 1</text><text x="188" y="58" text-anchor="middle">TS 2</text><text x="135" y="110" text-anchor="middle">ClO</text><text x="135" y="122" text-anchor="middle" class="t">(intermediate)</text><text x="34" y="126">O₃ + O</text><text x="228" y="146" text-anchor="middle">2O₂</text></svg><figcaption>Each peak is a transition state. The valley between them is the intermediate, ClO.</figcaption></figure>
 <ul><li>A mechanism is a sequence of elementary reactions that add up to the overall reaction.</li>
 <li>An elementary reaction is a single chemical step with one transition state. Its rate scales with each reactant concentration raised to its stoichiometric coefficient. This holds for elementary steps only, not for overall reactions.</li>
 <li>Example: O₃ + O → 2O₂ occurs as O₃ + Cl → O₂ + ClO, then O + ClO → O₂ + Cl.</li>
@@ -125,7 +139,7 @@ summary{cursor:pointer}
 <ul><li><b>Unimolecular:</b> one reactant particle, A → products, rate = k[A]. Examples: isomerization, bond breaking (N₂O₄ ⇌ 2NO₂), radioactive decay.</li>
 <li><b>Bimolecular:</b> exactly two reactant particles collide with one transition state. A + B → products has rate = k[A][B]; 2A → products has rate = k[A]². Example: bond formation, 2NO₂ ⇌ N₂O₄.</li>
 <li><b>Termolecular:</b> exactly three reactant particles. These steps are very slow, so A + B + C → products is unlikely as one step. Expect a multistep path, such as A + B → D and then D + C → products.</li></ul>
-<h3>Factors that affect reaction rate</h3>
+<h3>Factors that affect reaction rate</h3><figure><svg class="dg" viewBox="0 0 260 170" role="img" aria-label="Collision energy distributions at two temperatures. The higher temperature curve has more collisions beyond the activation energy."><path class="m" d="M30 10V150H250"/><text x="34" y="16">Fraction of collisions</text><text x="250" y="165" text-anchor="end">Collision energy</text><path class="sa" d="M30 150C45 50 75 40 105 95C125 130 160 146 245 149"/><path class="sb" d="M30 150C70 100 105 78 150 100C185 118 205 138 245 146"/><path class="m d" d="M175 25V150"/><text x="178" y="36">Ea</text><text x="70" y="38" style="fill:var(--a)">Lower T</text><text x="196" y="118" style="fill:var(--b)">Higher T</text></svg><figcaption>At higher T, more collisions have energy beyond Ea.</figcaption></figure><figure><svg class="dg" viewBox="0 0 260 170" role="img" aria-label="Energy diagram comparing two pathways with the same reactants and products. The catalyzed pathway has a lower barrier."><path class="m" d="M30 10V150H250"/><text x="34" y="16">Energy</text><text x="250" y="165" text-anchor="end">Reaction progress</text><path class="s" d="M32 115C75 115 85 40 135 40C185 40 195 125 246 125"/><path class="sa" d="M32 115C75 115 85 78 135 78C185 78 195 125 246 125"/><text x="135" y="33" text-anchor="middle">Uncatalyzed</text><text x="135" y="62" text-anchor="middle" style="fill:var(--a)">Catalyzed (lower Ea)</text></svg><figcaption>A catalyst lowers Ea. The reactants and products, and so ΔG, stay the same.</figcaption></figure>
 <ul><li>To change a rate, change the collision energy or the collision frequency.</li>
 <li><b>Temperature:</b> a higher T raises the average kinetic energy of collisions and gives a larger rate constant (Arrhenius equation, k = Ae^(−Ea/RT)).</li>
 <li><b>Concentration:</b> higher concentration means more frequent collisions, which usually means a faster reaction. A zero-order reaction is the exception, since its rate does not depend on concentration.</li>
@@ -157,7 +171,7 @@ summary{cursor:pointer}
 <li><b>Heterogeneous catalyst:</b> different phase from the reactants, so its available surface area matters.</li>
 <li><b>Enzymes</b> are biological catalysts, usually proteins. The reactant an enzyme binds is the <b>substrate</b>, and the part that interacts with it is the <b>active site</b>.</li>
 <li><b>Denaturation</b> is the loss of an enzyme’s quaternary, tertiary and secondary structure. <b>Inhibitors</b> decrease an enzyme’s catalytic efficiency.</li></ul>
-<h3>Energetics</h3>
+<h3>Energetics</h3><figure><svg class="dg" viewBox="0 0 260 150" role="img" aria-label="Two free energy diagrams: in the exergonic reaction products are lower than reactants, and in the endergonic reaction products are higher."><text x="70" y="14" text-anchor="middle">Exergonic</text><text x="195" y="14" text-anchor="middle">Endergonic</text><path class="s" d="M15 40h45M80 105h45M140 105h45M205 40h45"/><path class="m" d="M70 44V100M66 94l4 8 4-8M195 100V44M191 50l4-8 4 8"/><text x="37" y="54" text-anchor="middle">Reactants</text><text x="102" y="119" text-anchor="middle">Products</text><text x="162" y="119" text-anchor="middle">Reactants</text><text x="227" y="54" text-anchor="middle">Products</text><text x="70" y="142" text-anchor="middle">ΔG &lt; 0</text><text x="195" y="142" text-anchor="middle">ΔG &gt; 0</text></svg><figcaption>Height shows free energy, G.</figcaption></figure>
 <ul><li><b>Exergonic:</b> G of products is less than G of reactants, and the reaction is spontaneous.</li>
 <li><b>Endergonic:</b> G of products is greater than G of reactants, and the reaction is nonspontaneous.</li>
 <li><b>Coupled reactions</b> exchange energy, so an exergonic reaction can drive an endergonic one.</li>
@@ -219,16 +233,21 @@ const Q={
 ["What are coupled reactions?",["Reactions that exchange energy, such as an exergonic one driving an endergonic one","Reactions that share a catalyst","Two reactions with the same rate","Reactions with identical products"],0,"In coupling, energy released by one reaction powers another that would not proceed on its own."],
 ["Can a spontaneous (exergonic) reaction be very slow?",["Yes, spontaneity says nothing about speed","No, spontaneous reactions are always fast","Only if endergonic","Only with a catalyst"],0,"Thermodynamics tells you whether a reaction can occur. Kinetics, the activation energy, tells you how fast."]]
 };
+Q["Rate-determining step"].push(["In this energy diagram, which step is rate-determining?", ["Step 2, because it has the higher barrier", "Step 1, because it happens first", "Neither, because the valley sets the rate", "Step 1, because it has the lower barrier"], 0, "The step with the largest activation barrier is the slowest, and its rate sets the overall rate.", "<svg class=\"dg\" viewBox=\"0 0 260 160\" role=\"img\" aria-label=\"Energy diagram with two peaks labeled Step 1 and Step 2 and a valley between them.\"><path class=\"m\" d=\"M30 10V150H250\"/><text x=\"34\" y=\"16\">Energy</text><path class=\"s\" d=\"M32 120C60 120 62 75 85 75C108 75 110 100 135 100C160 100 162 40 188 40C214 40 216 128 246 128\"/><text x=\"85\" y=\"67\" text-anchor=\"middle\">Step 1</text><text x=\"188\" y=\"32\" text-anchor=\"middle\">Step 2</text></svg>"]);
+Q["Mechanisms"].push(["What does the valley between the two peaks represent?", ["A reaction intermediate", "A catalyst", "A transition state", "The products"], 0, "The valley is a species formed in one step and consumed in the next. The peaks are transition states.", "<svg class=\"dg\" viewBox=\"0 0 260 160\" role=\"img\" aria-label=\"Energy diagram with two peaks labeled Step 1 and Step 2 and a valley between them.\"><path class=\"m\" d=\"M30 10V150H250\"/><text x=\"34\" y=\"16\">Energy</text><path class=\"s\" d=\"M32 120C60 120 62 75 85 75C108 75 110 100 135 100C160 100 162 40 188 40C214 40 216 128 246 128\"/><text x=\"85\" y=\"67\" text-anchor=\"middle\">Step 1</text><text x=\"188\" y=\"32\" text-anchor=\"middle\">Step 2</text></svg>"]);
+Q["Integrated rate laws"].push(["A plot of [A] versus time is this straight line. What is the reaction order?", ["Zero", "First", "Second", "Cannot be determined"], 0, "Zero order gives [A]ₜ = −kt + [A]₀, a straight line of [A] against t. First order is linear in ln[A], and second order in 1/[A].", "<svg class=\"dg\" viewBox=\"0 0 260 160\" role=\"img\" aria-label=\"Concentration versus time as a straight line sloping down.\"><path class=\"m\" d=\"M30 10V150H250\"/><text x=\"34\" y=\"16\">[A]</text><text x=\"250\" y=\"165\" text-anchor=\"end\">Time</text><path class=\"s\" d=\"M30 30L170 150\"/></svg>"]);
+Q["Factors affecting rate"].push(["Both curves show the same reaction, and one has a catalyst. Which is the catalyzed pathway?", ["Y, because it has the lower activation energy", "X, because it has the higher barrier", "Y, because it has a lower ΔG overall", "Neither, since the barriers are the same"], 0, "A catalyst lowers Ea through a different mechanism. The reactants and products are unchanged, so ΔG is the same for both.", "<svg class=\"dg\" viewBox=\"0 0 260 160\" role=\"img\" aria-label=\"Two energy pathways, X with a high peak and Y with a lower peak, between the same reactants and products.\"><path class=\"m\" d=\"M30 10V150H250\"/><text x=\"34\" y=\"16\">Energy</text><text x=\"250\" y=\"165\" text-anchor=\"end\">Reaction progress</text><path class=\"s\" d=\"M32 115C75 115 85 40 135 40C185 40 195 125 246 125\"/><path class=\"sa\" d=\"M32 115C75 115 85 78 135 78C185 78 195 125 246 125\"/><text x=\"135\" y=\"33\" text-anchor=\"middle\">X</text><text x=\"135\" y=\"70\" text-anchor=\"middle\">Y</text></svg>"]);
+Q["Energetics"].push(["Is the reaction in this diagram exergonic or endergonic?", ["Exergonic", "Endergonic", "Neither", "Cannot be determined"], 0, "G of the products is lower than G of the reactants, so ΔG < 0. That is exergonic, and spontaneous.", "<svg class=\"dg\" viewBox=\"0 0 260 160\" role=\"img\" aria-label=\"Free energy diagram with reactants high on the left and products lower on the right.\"><text x=\"30\" y=\"16\">Free energy, G</text><path class=\"s\" d=\"M30 45h60M170 115h60\"/><path class=\"m d\" d=\"M90 45H170\"/><text x=\"60\" y=\"38\" text-anchor=\"middle\">Reactants</text><text x=\"200\" y=\"132\" text-anchor=\"middle\">Products</text></svg>"]);
 const other=(t,v)=>{let n;do{n=Math.floor(Math.random()*Q[t].length)}while(n===v);return n};
 const topics=Object.keys(Q);let set=[];
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
-function mk(t,v){const [q,o,a,e]=Q[t][v],ix=shuf(o.map((_,i)=>i));return{t,v,q,o:ix.map(i=>o[i]),a:ix.indexOf(a),e,pick:-1}}
+function mk(t,v){const [q,o,a,e]=Q[t][v],ix=shuf(o.map((_,i)=>i));return{t,v,img:Q[t][v][4]||'',q,o:ix.map(i=>o[i]),a:ix.indexOf(a),e,pick:-1}}
 function roll(){set=shuf(topics).map(t=>mk(t,Math.floor(Math.random()*Q[t].length)));renderQ()}
 function renderQ(){
   const box=$('qs');box.innerHTML='';
   set.forEach((x,i)=>{
     const d=document.createElement('div');d.className='q';
-    d.innerHTML=`<div class="t"><span>${x.t}</span><button data-s="${i}">Swap question</button></div><p>${x.q}</p>`+
+    d.innerHTML=`<div class="t"><span>${x.t}</span><button data-s="${i}">Swap question</button></div><p>${x.q}</p>${x.img?`<div class="qimg">${x.img}</div>`:''}`+
     x.o.map((o,k)=>{const st=x.pick<0?'':k===x.a?' ok':k===x.pick?' no':'';return `<button class="opt${st}" data-i="${i}" data-k="${k}"${x.pick>=0?' disabled':''}>${o}</button>`}).join('')+
     (x.pick>=0?`<div class="exp"><b>${x.pick===x.a?'Correct.':'Not quite.'}</b> ${x.e}</div>`:'');
     box.appendChild(d)});
