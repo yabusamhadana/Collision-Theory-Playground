@@ -232,14 +232,14 @@ function Sim(id,init){
       a.vx-=vr*nx;a.vy-=vr*ny;b.vx+=vr*nx;b.vy+=vr*ny}}
   function tick(n){for(let k=0;k<n;k++)step();fr++;if(fr%12===0){ser.push(stats());if(ser.length>300)ser.shift()}if(fr%6===0){stats();drawHist()}}
   function draw(){
-    ctx.clearRect(0,0,W,H);const cs=[COL.a,COL.b,COL.c],al=s.al*Math.PI/180;
+    if(!fit(q('.cv'),ctx,W,H))return;drawHist();ctx.clearRect(0,0,W,H);const cs=[COL.a,COL.b,COL.c],al=s.al*Math.PI/180;
     for(const p of P){if(p.f>0){ctx.beginPath();ctx.arc(p.x,p.y,R+p.f*.8,0,7);ctx.strokeStyle=COL.c;ctx.globalAlpha=p.f/16;ctx.lineWidth=2;ctx.stroke();ctx.globalAlpha=1}
       ctx.beginPath();ctx.arc(p.x,p.y,R,0,7);ctx.fillStyle=cs[p.t];ctx.fill();if(s.ori&&p.t<2){ctx.beginPath();ctx.arc(p.x,p.y,R+1.5,p.a-al,p.a+al);ctx.strokeStyle=COL.ink;ctx.lineWidth=2.5;ctx.stroke()}}
-    const w=560,h=100;gx.clearRect(0,0,w,h);gx.strokeStyle=COL.line;gx.strokeRect(.5,.5,w-1,h-1);
+    const w=560,h=100;fit(q('.gr'),gx,w,h);gx.clearRect(0,0,w,h);gx.strokeStyle=COL.line;gx.strokeRect(.5,.5,w-1,h-1);
     gx.fillStyle=COL.mute;gx.font='11px sans-serif';gx.fillText('100%',4,12);gx.fillText('0',4,h-4);
     gx.beginPath();gx.strokeStyle=COL.c;gx.lineWidth=2.5;ser.forEach((v,i)=>{const x=34+i*(w-44)/300,y=h-6-v*(h-18);i?gx.lineTo(x,y):gx.moveTo(x,y)});gx.stroke()}
   function drawHist(){
-    const w=420,h=160,bw=2,nb=30,bp=(w-20)/nb,e=ea();hx.clearRect(0,0,w,h);
+    const w=420,h=160,bw=2,nb=30,bp=(w-20)/nb,e=ea();fit(q('.hi'),hx,w,h);hx.clearRect(0,0,w,h);
     const bins=new Array(nb).fill(0);hist.forEach(v=>bins[Math.min(nb-1,Math.floor(v/bw))]++);const mx=Math.max(4,...bins);
     bins.forEach((c,k)=>{const r=(k+1)*bw>e;hx.globalAlpha=r?1:.45;hx.fillStyle=r?COL.c:COL.mute;const bh=c/mx*(h-40);hx.fillRect(10+k*bp+1,h-22-bh,bp-2,bh)});
     hx.globalAlpha=1;const ex=10+e/bw*bp;hx.strokeStyle=COL.ink;hx.lineWidth=2;hx.beginPath();hx.moveTo(ex,6);hx.lineTo(ex,h-22);hx.stroke();
@@ -261,7 +261,8 @@ $('spd').oninput=()=>$('spv').textContent=$('spd').value+'×';$('spv').textConte
 /* ---------- Tabs & loop ---------- */
 function tab(n){[1,2].forEach(i=>{$('t'+i).setAttribute('aria-selected',i===n);$('p'+i).hidden=i!==n})}
 $('t1').onclick=()=>tab(1);$('t2').onclick=()=>tab(2);
-function drawCU(){const x=$('cuc').getContext('2d'),al=sims[0].s.al,A=+$('cuA').value,B=+$('cuB').value,r=Math.PI/180;
+function fit(c,x,lw,lh){const w=c.clientWidth;if(!w)return false;const pw=Math.round(w*(window.devicePixelRatio||1));if(c.width!==pw){c.width=pw;c.height=Math.round(pw*lh/lw)}x.setTransform(c.width/lw,0,0,c.width/lw,0,0);return true}
+function drawCU(){const cc=$('cuc'),x=cc.getContext('2d'),al=sims[0].s.al,A=+$('cuA').value,B=+$('cuB').value,r=Math.PI/180;if(!fit(cc,x,560,170))return;
 $('cuAv').textContent=A+'°';$('cuBv').textContent=B+'°';x.clearRect(0,0,560,170);
 const d=(v,t)=>{const q=(v-t)*r;return Math.abs(Math.atan2(Math.sin(q),Math.cos(q)))/r};
 const okA=d(A,0)<=al,okB=d(B,180)<=al;
